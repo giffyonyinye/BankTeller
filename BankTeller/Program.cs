@@ -6,7 +6,6 @@ namespace BankTeller
     {
         static void Main(string[] args)
         {
-
             Teller Giffy = new Teller();
 
             Giffy.CustomerDetails();
@@ -27,7 +26,7 @@ namespace BankTeller
             name = Console.ReadLine();
 
             Console.WriteLine("Please select your account type. \nInput a number to choose:");
-            Console.WriteLine("1. Savings \n2. Current \n3. Kids \n4. Corporate");
+            Console.WriteLine("enter 1 for savings \n enter 2 for current \n enter 3 for corporate \n enter 4 for kids");
             int userAccountType = int.Parse(Console.ReadLine());
             switch (userAccountType)
             {
