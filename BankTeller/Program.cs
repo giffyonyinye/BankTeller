@@ -1,12 +1,11 @@
 ﻿using System;
 
-namespace bankTeller
+namespace BankTeller
 {
     class Program
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Hello World!");
 
             Teller Nelson = new Teller();
 
@@ -17,29 +16,32 @@ namespace bankTeller
 
     class Teller
     {
-        public string UserChoice { get; set; }
+        public string AccountType { get; set; }
         public double UserDeposit { get; set; }
 
 
         public void RegisterClient()
         {
-            Console.WriteLine("Enter your name:");
+            string name;
+            Console.WriteLine("Enter your Account Number:");
+            name = Console.ReadLine();
+
             //get the name
             //get other details
 
-            Console.WriteLine("Please select account type. \nInput a number to choose:");
+            Console.WriteLine("Please select your account type. \nInput a number to choose:");
             Console.WriteLine("1. Savings \n2. Current \n3. Kids \n4. Corporate");
             int answerIndex = int.Parse(Console.ReadLine());
             switch (answerIndex)
             {
                 case 1:
-                    UserChoice = "savings";
+                    AccountType = "savings";
                     break;
                 case 2:
-                    UserChoice = "current";
+                    AccountType = "current";
                     break;
                 default:
-                    UserChoice = "savings";
+                    AccountType = "savings";
                     break;
             }
             Console.WriteLine("Please enter your initial amount: ");
@@ -48,11 +50,11 @@ namespace bankTeller
 
         double GetRate()
         {
-            if (UserChoice == "savings")
+            if (AccountType == "savings")
             {
                 return 5.2/100;
             }
-            else if (UserChoice == "current")
+            else if (AccountType == "current")
             {
                 return 7.4/100;
             }
@@ -82,7 +84,7 @@ namespace bankTeller
         public void ShowCummulative()
         {
             int[] monthDurations = {6, 9, 12, 24, 60 };
-            switch (UserChoice)
+            switch (AccountType)
             {
                 case "savings":
                     foreach(int duration in monthDurations)
