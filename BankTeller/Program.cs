@@ -17,7 +17,7 @@ namespace BankTeller
     class Teller
     {
         public string AccountType { get; set; }
-        public double UserDeposit { get; set; }
+        public double CustomerDeposit { get; set; }
 
 
         public void CustomerDetails()
@@ -25,9 +25,6 @@ namespace BankTeller
             string name;
             Console.WriteLine("Enter your Account Number:");
             name = Console.ReadLine();
-
-            //get the name
-            //get other details
 
             Console.WriteLine("Please select your account type. \nInput a number to choose:");
             Console.WriteLine("1. Savings \n2. Current \n3. Kids \n4. Corporate");
@@ -51,7 +48,7 @@ namespace BankTeller
                     break;
             }
             Console.WriteLine("Please enter your initial amount: ");
-            UserDeposit = double.Parse(Console.ReadLine());
+            CustomerDeposit = double.Parse(Console.ReadLine());
         }
 
         private double GetRate()
@@ -76,15 +73,15 @@ namespace BankTeller
             for (int i = 0; i < month; i++)
             {
                 interest = ((rate / 100) * currentAmount);
-                currentAmount = (currentAmount + interest); // -(vat*currentAmount);
+                currentAmount = (currentAmount + interest) - (vat*currentAmount);
             }
 
             return Math.Round(currentAmount, 3);
         }
 
-        public void DisplayMessage(int numberOfMonths, string accountType)
+        public void DisplayCummulativeBalance(int numberOfMonths, string accountType)
         {
-            Console.WriteLine("With a " + accountType + " account, your gross amount after " + numberOfMonths + " months will be " + CalculateCummulative(numberOfMonths,GetRate(),UserDeposit));
+            Console.WriteLine("With a " + accountType + " account, your gross amount after " + numberOfMonths + " months will be " + CalculateCummulative(numberOfMonths,GetRate(),CustomerDeposit));
         }
 
         public void ShowCummulative()
@@ -95,17 +92,29 @@ namespace BankTeller
                 case "savings":
                     foreach(int duration in monthDurations)
                     {
-                        DisplayMessage(duration, "savings");
+                        DisplayCummulativeBalance(duration, "savings");
                     }
                     break;
                 case "current":
                     foreach (int duration in monthDurations)
                     {
-                        DisplayMessage(duration, "current");
+                        DisplayCummulativeBalance(duration, "current");
+                    }
+                    break;
+                case "kids":
+                    foreach (int duration in monthDurations)
+                    {
+                        DisplayCummulativeBalance(duration, "kids");
+                    }
+                    break;
+                case "corporate":
+                    foreach (int duration in monthDurations)
+                    {
+                        DisplayCummulativeBalance(duration, "corporate");
                     }
                     break;
                 default:
-                    Console.WriteLine("Gerrout!");
+                    Console.WriteLine("oops no balance!");
                     break;
             }
         }
