@@ -7,10 +7,10 @@ namespace BankTeller
         static void Main(string[] args)
         {
 
-            Teller Nelson = new Teller();
+            Teller Giffy = new Teller();
 
-            Nelson.RegisterClient();
-            Nelson.ShowCummulative();
+            Giffy.CustomerDetails();
+            Giffy.ShowCummulative();
         }
     }
 
@@ -20,7 +20,7 @@ namespace BankTeller
         public double UserDeposit { get; set; }
 
 
-        public void RegisterClient()
+        public void CustomerDetails()
         {
             string name;
             Console.WriteLine("Enter your Account Number:");
@@ -31,14 +31,20 @@ namespace BankTeller
 
             Console.WriteLine("Please select your account type. \nInput a number to choose:");
             Console.WriteLine("1. Savings \n2. Current \n3. Kids \n4. Corporate");
-            int answerIndex = int.Parse(Console.ReadLine());
-            switch (answerIndex)
+            int userAccountType = int.Parse(Console.ReadLine());
+            switch (userAccountType)
             {
                 case 1:
                     AccountType = "savings";
                     break;
                 case 2:
                     AccountType = "current";
+                    break;
+                case 3:
+                    AccountType = "kids";
+                    break;
+                case 4:
+                    AccountType = "corporate";
                     break;
                 default:
                     AccountType = "savings";
@@ -48,7 +54,7 @@ namespace BankTeller
             UserDeposit = double.Parse(Console.ReadLine());
         }
 
-        double GetRate()
+        private double GetRate()
         {
             if (AccountType == "savings")
             {
@@ -61,7 +67,7 @@ namespace BankTeller
             else return 0.00;
         }
 
-        double CalculateCummulative(int month, double rate, double initial)
+        public double CalculateCummulative(int month, double rate, double initial)
         {
             double interest;
             double vat = 7.5/100;
