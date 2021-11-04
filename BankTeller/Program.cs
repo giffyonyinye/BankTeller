@@ -27,8 +27,8 @@ namespace BankTeller
 
             Console.WriteLine("Please select your account type. \nInput a number to choose:");
             Console.WriteLine("enter 1 for savings \n enter 2 for current \n enter 3 for corporate \n enter 4 for kids");
-            int userAccountType = int.Parse(Console.ReadLine());
-            switch (userAccountType)
+            int accountType = int.Parse(Console.ReadLine());
+            switch (accountType)
             {
                 case 1:
                     AccountType = "savings";
