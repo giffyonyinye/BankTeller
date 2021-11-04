@@ -76,7 +76,7 @@ namespace BankTeller
                 currentAmount = (currentAmount + interest) - (vat*currentAmount);
             }
 
-            return Math.Round(currentAmount, 3);
+            return currentAmount;
         }
 
         public void DisplayCummulativeBalance(int numberOfMonths, string accountType)
