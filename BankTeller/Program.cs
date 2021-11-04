@@ -64,11 +64,11 @@ namespace BankTeller
             else return 0.00;
         }
 
-        public double CompoundInterest(int month, double rate, double initial)
+        public double CompoundInterest(int month, double rate, double principal)
         {
             double interest;
             double vat = 7.5/100;
-            double currentAmount = initial;
+            double currentAmount = principal;
 
             for (int i = 0; i < month; i++)
             {
