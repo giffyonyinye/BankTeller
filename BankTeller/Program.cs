@@ -52,6 +52,7 @@ namespace BankTeller
 
         private double GetRate()
         {
+
             if (AccountType == "savings")
             {
                 return 5.2/100;
@@ -63,7 +64,7 @@ namespace BankTeller
             else return 0.00;
         }
 
-        public double CalculateCummulative(int month, double rate, double initial)
+        public double CompoundInterest(int month, double rate, double initial)
         {
             double interest;
             double vat = 7.5/100;
@@ -80,7 +81,7 @@ namespace BankTeller
 
         public void DisplayCummulativeBalance(int numberOfMonths, string accountType)
         {
-            Console.WriteLine("With a " + accountType + " account, your gross amount after " + numberOfMonths + " months will be " + CalculateCummulative(numberOfMonths,GetRate(),CustomerDeposit));
+            Console.WriteLine($"With a {accountType}  account, you will save after  {CompoundInterest(numberOfMonths, GetRate(), CustomerDeposit)} in {numberOfMonths}");
         }
 
         public void ShowCummulative()
